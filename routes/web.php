@@ -12,10 +12,13 @@
 */
 
 Route::get('/', 'StudentController@index');
-Route::post('/students', 'StudentController@store');
 Route::get('/students/{student}', 'StudentController@show');
 Route::post('/students/{student}/contact', 'StudentContactController@store');
 
+Route::group(['middleware' => ['auth', 'verified']], function() {
+    Route::post('/students', 'StudentController@store');
+    Route::get('/admin', 'AdminController@index')->name('home');
+});
+
 Auth::routes(['verify' => true]);
 
-Route::get('/admin', 'AdminController@index')->name('home');

@@ -19,10 +19,11 @@ class StudentContactController extends Controller
             'student_id' => 'required|integer',
         ]);
 
-        $student = Student::find($validatedData['student_id']);
+        $student = Student::findOrFail($validatedData['student_id']);
 
         Mail::to($student->email)->send(new StudentContact($validatedData));
 
-        return back()->with('status', 'Message sent!');
+        return redirect($student->path())
+            ->with('status', 'Message sent!');
     }
 }

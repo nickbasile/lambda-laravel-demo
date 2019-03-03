@@ -9,7 +9,7 @@
         </div>
     </section>
     <section class="container">
-        @foreach($students->chunk(3) as $chunk)
+        @forelse($students->chunk(3) as $chunk)
             <div class="card-deck" id="students">
                 @foreach($chunk as $student)
                     <div class="card mx-4 my-2">
@@ -21,11 +21,22 @@
                         <div class="card-footer bg-white">
                             <a href="{{ $student->github_url }}" class="card-link">Github <i class="ml-1 fas fa-external-link-alt"></i></a>
                             <a href="{{ $student->portfolio_url }}" class="card-link">Portfolio <i class="ml-1 fas fa-external-link-alt"></i></a>
-                            <a href="/students/{{$student->id}}" class="card-link text-success float-right">Contact!</a>
+                            <a href="{{ $student->path() }}" class="card-link text-success float-right">Contact!</a>
                         </div>
                     </div>
                 @endforeach
             </div>
-        @endforeach
+        @empty
+            <div class="row">
+                <div class="col-12">
+                    <h3 class="text-center">Students are busy leveling up. Come back soon!</h3>
+                </div>
+            </div>
+        @endforelse
+        <div class="row">
+            <div class="col-12 mx-2 my-2">
+                {{ $students->links() }}
+            </div>
+        </div>
     </section>
 @endsection

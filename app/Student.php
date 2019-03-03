@@ -15,4 +15,9 @@ class Student extends Model
         'github_url',
         'profile_photo_url',
     ];
+
+    public function path()
+    {
+        return "/students/{$this->id}";
+    }
 }

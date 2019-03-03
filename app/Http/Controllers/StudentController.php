@@ -7,12 +7,6 @@ use Illuminate\Http\Request;
 
 class StudentController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware(['auth', 'verified'])
-            ->except('index', 'show');
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -21,7 +15,7 @@ class StudentController extends Controller
     public function index()
     {
         $students = Student::orderByDesc('id')
-            ->get();
+            ->paginate(6);
 
         return view('students', compact('students'));
     }
@@ -54,9 +48,10 @@ class StudentController extends Controller
             'profile_photo_url' => 'required|url',
         ]);
 
-        (new Student($validatedData))->save();
+        Student::create($validatedData);
 
-        return back()->with('status', 'Student created successfully!');
+        return redirect('/admin')
+            ->with('status', 'Student created successfully!');
     }
 
     /**
