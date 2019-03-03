@@ -7,10 +7,12 @@ Follow these steps to get set up. If you get stuck, please refer to the Laravel 
    - If you didn't have Valet installed, make sure you run the [park command](https://laravel.com/docs/5.8/valet#the-park-command).
 1. Clone this repository to your machine.
 1. Run `composer install` and `npm install` in the cloned directory.
-1. Update your `.env` file with your database configuration and your [Mailtrap.io account](https://mailtrap.io/).
+1. Duplicate `.env.example` and rename it `.env`
+1. Update your `.env` file's database configuration, the `MAIL_DRIVER` using a [Mailtrap.io account](https://mailtrap.io/), `APP_NAME`, and `APP_URL`.
    - If you don't have a database set up, you can follow the [Valet documentation](https://laravel.com/docs/5.8/valet#installation) to set up MySQL.
-1. Run the database seeder with `php artisan migrate:fresh --seed`.
-1. If you have the default Valet settings, navigate to `http://lambda-laravel-demo.test` to view the project.
+1. Generate your application key by running `key:generate`
+1. Populate the database with dummy data by running `php artisan migrate:fresh --seed`.
+1. If you use the default Valet settings, navigate to `http://lambda-laravel-demo.test` to view the project.
 
 ## Need Help?
 If you're a Lambda School student and you need some help, please reach out to me on Slack.
