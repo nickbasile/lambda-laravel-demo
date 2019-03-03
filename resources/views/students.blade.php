@@ -21,7 +21,7 @@
                         <div class="card-footer bg-white">
                             <a href="{{ $student->github_url }}" class="card-link">Github <i class="ml-1 fas fa-external-link-alt"></i></a>
                             <a href="{{ $student->portfolio_url }}" class="card-link">Portfolio <i class="ml-1 fas fa-external-link-alt"></i></a>
-                            <a href="#" class="card-link text-success float-right">Contact!</a>
+                            <a href="/students/{{$student->id}}" class="card-link text-success float-right">Contact!</a>
                         </div>
                     </div>
                 @endforeach

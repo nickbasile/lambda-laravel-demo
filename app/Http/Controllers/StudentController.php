@@ -10,7 +10,7 @@ class StudentController extends Controller
     public function __construct()
     {
         $this->middleware(['auth', 'verified'])
-            ->except('index');
+            ->except('index', 'show');
     }
 
     /**
@@ -67,7 +67,7 @@ class StudentController extends Controller
      */
     public function show(Student $student)
     {
-        //
+        return view('student', compact('student'));
     }
 
     /**

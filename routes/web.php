@@ -13,6 +13,8 @@
 
 Route::get('/', 'StudentController@index');
 Route::post('/students', 'StudentController@store');
+Route::get('/students/{student}', 'StudentController@show');
+Route::post('/students/{student}/contact', 'StudentContactController@store');
 
 Auth::routes(['verify' => true]);
 
