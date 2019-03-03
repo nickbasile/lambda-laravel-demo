@@ -10,8 +10,9 @@ Follow these steps to get set up. If you get stuck, please refer to the Laravel 
 1. Duplicate `.env.example` and rename it `.env`
 1. Update your `.env` file's database configuration, the `MAIL_DRIVER` using a [Mailtrap.io account](https://mailtrap.io/), `APP_NAME`, and `APP_URL`.
    - If you don't have a database set up, you can follow the [Valet documentation](https://laravel.com/docs/5.8/valet#installation) to set up MySQL.
-1. Generate your application key by running `key:generate`
-1. Populate the database with dummy data by running `php artisan migrate:fresh --seed`.
+1. Generate your application key by running `php artisan key:generate` in the root of your project.
+1. Check that everything is working by running the test suite with `vendor/bin/phpunit` in the root of your project.
+1. Populate the database with dummy data by running `php artisan migrate:fresh --seed` in the root of your project.
 1. If you use the default Valet settings, navigate to `http://lambda-laravel-demo.test` to view the project.
 
 ## Need Help?
@@ -32,4 +33,4 @@ If you're not a Lambda School student, then feel free to reach out on [Twitter](
 - [Adam Wathan's Twitter](https://twitter.com/adamwathan)
 - [Matt Stauffer's Twitter](https://twitter.com/stauffermatt)
 - [Freek Van der Herten's Twitter](https://twitter.com/freekmurze)
-- [Marcel Pociot](https://twitter.com/marcelpociot)
+- [Marcel Pociot's Twitter](https://twitter.com/marcelpociot)
