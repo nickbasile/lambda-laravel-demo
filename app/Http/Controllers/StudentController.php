@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 
 class StudentController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['auth', 'verified'])
+            ->except('index');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +20,8 @@ class StudentController extends Controller
      */
     public function index()
     {
-        $students = Student::get();
+        $students = Student::orderByDesc('id')
+            ->get();
 
         return view('students', compact('students'));
     }
@@ -37,7 +44,19 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'email' => 'required|unique:students|email',
+            'bio' => 'required',
+            'github_url' => 'required|url',
+            'portfolio_url' => 'required|url',
+            'profile_photo_url' => 'required|url',
+        ]);
+
+        (new Student($validatedData))->save();
+
+        return back()->with('status', 'Student created successfully!');
     }
 
     /**
