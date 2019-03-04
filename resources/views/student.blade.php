@@ -56,7 +56,6 @@
                                 </span>
                             @endif
                         </div>
-                        <input type="hidden" value="{{ $student->id }}" name="student_id">
                         <button type="submit" class="btn btn-primary">Message {{ $student->first_name . ' ' . $student->last_name}}</button>
                     </form>
                 </div>

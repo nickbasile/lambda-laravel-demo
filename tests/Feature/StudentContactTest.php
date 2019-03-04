@@ -49,7 +49,6 @@ class StudentContactTest extends TestCase
             'company' => $this->faker->company,
             'email' => $this->faker->safeEmail,
             'message' => $this->faker->paragraph,
-            'student_id' => $student->id,
         ];
 
         $this->post($student->path() . '/contact', $attributes)
@@ -66,7 +65,6 @@ class StudentContactTest extends TestCase
             'company' => '',
             'email' => $this->faker->safeEmail,
             'message' => $this->faker->paragraph,
-            'student_id' => $student->id,
         ];
 
         $this->post($student->path() . '/contact', $attributes)
@@ -83,7 +81,6 @@ class StudentContactTest extends TestCase
             'company' => $this->faker->company,
             'email' => '',
             'message' => $this->faker->paragraph,
-            'student_id' => $student->id,
         ];
 
         $this->post($student->path() . '/contact', $attributes)
@@ -94,7 +91,6 @@ class StudentContactTest extends TestCase
             'company' => $this->faker->company,
             'email' => 'foobar',
             'message' => $this->faker->paragraph,
-            'student_id' => $student->id,
         ];
 
         $this->post($student->path() . '/contact', $attributes)
@@ -111,38 +107,9 @@ class StudentContactTest extends TestCase
             'company' => $this->faker->company,
             'email' => $this->faker->safeEmail,
             'message' => '',
-            'student_id' => $student->id,
         ];
 
         $this->post($student->path() . '/contact', $attributes)
             ->assertSessionHasErrors('message');
-    }
-
-    /** @test */
-    public function a_student_contact_requires_a_valid_student_id()
-    {
-        $student = factory(Student::class)->create();
-
-        $attributes = [
-            'name' => $this->faker->name,
-            'company' => $this->faker->company,
-            'email' => $this->faker->safeEmail,
-            'message' => $this->faker->paragraph,
-            'student_id' => '',
-        ];
-
-        $this->post($student->path() . '/contact', $attributes)
-            ->assertSessionHasErrors('student_id');
-
-        $attributes = [
-            'name' => $this->faker->name,
-            'company' => $this->faker->company,
-            'email' => $this->faker->safeEmail,
-            'message' => $this->faker->paragraph,
-            'student_id' => 'foobar',
-        ];
-
-        $this->post($student->path() . '/contact', $attributes)
-            ->assertSessionHasErrors('student_id');
     }
 }
